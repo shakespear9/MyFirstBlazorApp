@@ -1,0 +1,41 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+<p>The counter value is @currentCount</p>
+
+<button class="btn btn-primary" @onclick=IncrementCounter>
+    Increment counter</button>
+
+@*One Way binding*@
+@* <MyFirstComponent CurrentCounterValue=@currentCount /> *@
+
+@*Two Way binding*@
+<MyFirstComponent @bind-CurrentCounterValue=currentCount />
+    
+
+@* <MySecondComponent CurrentCounterValue=@currentCount /> *@
+
+@code {
+    private int currentCount = 42;
+
+    [Parameter]
+    public Action<int> OnMultipleOfTwoAction { get; set; }
+
+    [Parameter] 
+    public EventCallback<int> OnMultipleOfThree { get; set; }
+
+    private async Task IncrementCounter()
+    {
+        currentCount++;
+
+        // if (currentCount % 2 == 0)
+        // {
+        //     OnMultipleOfTwoAction.Invoke(currentCount);
+        // }
+
+        // if (currentCount % 3 ==0)
+        // {
+        //     await OnMultipleOfThree.InvokeAsync(currentCount);
+        // }
+    }
+}

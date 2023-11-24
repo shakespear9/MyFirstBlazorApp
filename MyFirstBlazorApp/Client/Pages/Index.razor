@@ -1,0 +1,45 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+<MyFirstComponent/>
+
+
+Welcome to your new app.
+<ul>
+    <li>Last multiple of two = @LastMultipleOfTwo</li>
+    <li>Last multiple of three = @LastMultipleOfThree</li>
+</ul>
+
+<Counter OnMultipleOfThree=@UpdateLastMultipleOfThreeValue OnMultipleOfTwoAction=@UpdateLastMultipleOfTwoValue />
+
+@code{
+    int LastMultipleOfThree = 0;
+    int LastMultipleOfTwo = 0;
+
+
+    //********////
+    // both working 
+    private void UpdateLastMultipleOfThreeValue(int value)
+    {
+        LastMultipleOfThree = value;
+    }
+
+    // private Task UpdateLastMultipleOfThreeValue(int value)
+    // {
+    //     LastMultipleOfThree = value;
+    //     return Task.CompletedTask;
+    // }
+    //********////
+
+    private void UpdateLastMultipleOfTwoValue(int value)
+    {
+        LastMultipleOfTwo = value;
+    }
+}
+
+
+@*Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />*@

@@ -1,0 +1,55 @@
+﻿
+@page "/cascading"
+
+<h3>Cascading</h3>
+
+
+
+<button @onclick=OnClickByName>ByName</button>
+<button @onclick=OnClickByType>ByType</button>
+
+
+@* not working *@
+@* <button @onclick=OnClickByName>ByName</button>
+<button @onclick=OnClickByType>ByType</button> *@
+
+
+
+@if(choice == By.name)
+{
+    <ByName />
+}else if(choice == By.type)
+{
+   <ByType />
+}
+
+@code {
+
+
+    private enum By
+    {
+        name,
+        type
+    }
+    private const String BY_NAME = "name";
+    private const String BY_TYPE = "type";
+
+    private By choice;
+
+    void OnClickByName()
+    {
+        choice = By.name;
+    }
+
+    void OnClickByType()
+    {
+        choice = By.type;
+    }
+
+    // not working
+    void OnClick(By by)
+    {
+        choice = by;
+    }
+
+}
