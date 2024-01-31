@@ -1,0 +1,22 @@
+﻿
+<h1>A generic list of Person</h1>
+<DataList Data=@People TItem=Person>
+    @* @context.Salutation @context.FamilyName, @context.GivenName *@
+  <ItemTemplate>
+    <li @key=context>@context.Salutation @context.GivenName @context.FamilyName</li>
+  </ItemTemplate>
+</DataList>
+@code
+{
+  private IEnumerable<Person> People;
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
+    People = new Person[]
+    {
+      new Person { Salutation = "Mr", GivenName = "Bob", FamilyName = "Geldof" },
+      new Person { Salutation = "Mrs", GivenName = "Angela", FamilyName = "Rippon" },
+      new Person { Salutation = "Mr", GivenName = "Freddie", FamilyName = "Mercury" }
+    };
+  }
+}

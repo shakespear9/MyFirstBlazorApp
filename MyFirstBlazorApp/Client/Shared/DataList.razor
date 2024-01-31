@@ -1,0 +1,41 @@
+﻿@typeparam TItem
+
+<ul>
+
+    @foreach (TItem item in Data ?? Array.Empty<TItem>())
+    {
+        @* <li>@ChildContent(item)</li> *@
+        @ItemTemplate(item)
+    }
+
+</ul>
+
+@* ///////////////////////////////////////// *@
+<div class="paged-data-list">
+    <div class="paged-data-list_header">
+        @Data.Count() item(s)
+    </div>
+    <div class="paged-data-list_body">
+        <!-- Consumer wants either a <table> or a <ul> here -->
+        @foreach (TItem item in Data)
+        {
+            @ItemTemplate(item)
+        }
+
+        <!-- Consumer wants either a </table> or a </ul> here -->
+    </div>
+    <div class="paged-data-list_footer">
+        <button type="button" etc>Prev</button>
+        <button type="button" etc>Next</button>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public IEnumerable<TItem> Data { get; set; }
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; }
+    [Parameter]
+    public RenderFragment<TItem> ChildContent { get; set; }
+}
